@@ -40,7 +40,7 @@ const SingleTodo: React.FC<Props> = ({ todo, todos, setTodos }: Props) => {
 
   return <form className='todos__single' onSubmit={(e) => handleEdit(e, todo.id)}>
     {editMode ? (
-      <input ref={inputRef} type='text' value={editTodoText} onChange={e => setEditTodoText(e.target.value)} className='todos__single--text input' />
+      <input ref={inputRef} type='text' value={editTodoText} onChange={e => setEditTodoText(e.target.value)} onBlur={(e) => handleEdit(e, todo.id)} className='todos__single--text input' />
     ) : todo.isDone ? (
       <s className="todos__single--text">{todo.todo}</s>
     ) : (
@@ -50,7 +50,7 @@ const SingleTodo: React.FC<Props> = ({ todo, todos, setTodos }: Props) => {
       <span className="icon" onClick={() => {
         if (!editMode && !todo.isDone) setEditMode(!editMode)
       }}><FiEdit3 /></span>
-      <span className="icon" onClick={() => handleDelete(todo.id)}><MdDelete /></span>
+      <span className="icon delete" onClick={() => handleDelete(todo.id)}><MdDelete /></span>
       <span className="icon" onClick={() => handleDone(todo.id)}><TiTick /></span>
     </div>
   </form>;

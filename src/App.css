@@ -1,5 +1,4 @@
-* {font-family: monospace;
-color: #fafafa;}
+* {font-family: monospace; box-sizing: border-box;margin: 0;padding: 0;}
 .App {
   width: 100vw;
   height: 100vh;
@@ -7,6 +6,7 @@ color: #fafafa;}
   flex-direction: column;
   align-items: center;
   background-color: darkslateblue;
+  color: #fafafa;
 }
 
 .heading {
