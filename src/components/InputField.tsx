@@ -14,7 +14,7 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }: Props) => {
     handleAdd(e);
     inputRef.current?.blur();
   }}>
-    <input type="text" value={todo} ref={inputRef} onChange={e => setTodo(e.target.value)} placeholder='Enter a task' className='input__box' />
+    <input type="text" value={todo} ref={inputRef} onChange={e => setTodo(e.target.value)} placeholder='Enter a task' className='input__box' autoFocus />
     <button className='input__submit' type='submit'>Go</button>
   </form>;
 };

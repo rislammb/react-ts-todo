@@ -1,29 +1,42 @@
 import React from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 import './styles.css';
 import { Todo } from '../model';
 import SingleTodo from './SingleTodo';
 
 interface Props {
+  activeTodos: Todo[],
+  completedTodos: Todo[],
   todos: Todo[],
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
 }
 
-const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
-  const activeTodo = todos.filter(todo => !todo.isDone)
-  const completedTodo = todos.filter(todo => todo.isDone)
+const TodoList: React.FC<Props> = ({ activeTodos,
+  completedTodos, todos, setTodos }: Props) => {
   return <div className="container">
-    <div className='todos'>
-      <span className="todos__heading">Active Task</span>
-      {activeTodo.map(todo => (
-        <SingleTodo todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
-      ))}
-    </div>
-    <div className='todos'>
-      <span className="todos__heading">Completed Task</span>
-      {completedTodo.map(todo => (
-        <SingleTodo todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
-      ))}
-    </div>
+    <Droppable droppableId='activeList'>
+      {(provided, snapshot) => (
+        <div className={`todos ${snapshot.isDraggingOver ? 'dragactive' : ''}`} ref={provided.innerRef} {...provided.droppableProps}>
+          <span className="todos__heading">Active Task</span>
+          {activeTodos.map((todo, index) => (
+            <SingleTodo index={index} todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
+          ))}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
+    <Droppable droppableId='completedList'>
+      {(provided, snapshot) => (
+        <div className={`todos completed ${snapshot.isDraggingOver ? 'dragcomplete' : ''}`} ref={provided.innerRef} {...provided.droppableProps}>
+          <span className="todos__heading">Completed Task</span>
+          {completedTodos.map((todo, index) => (
+            <SingleTodo index={index} todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
+          ))}
+          {provided.placeholder}
+        </div>
+
+      )}
+    </Droppable>
   </div>
 };
 

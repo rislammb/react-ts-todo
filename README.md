@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Open Live
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Click here](https://r-ts-todo.netlify.app)
 
 ## Available Scripts
 

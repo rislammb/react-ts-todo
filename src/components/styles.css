@@ -60,9 +60,17 @@
   flex-direction: column;
   padding: 15px;
   border-radius: 5px;
-  background-color: #36a;
+  background-color: #2e6ec0;
 }
-
+.todos.completed {
+  background-color: #e53;
+}
+.todos.dragactive {
+  background-color: #225ead;
+}
+.todos.dragcomplete {
+  background-color: rgb(211, 71, 40);
+}
 .todos__heading {
   font-size: 23px;
 }
@@ -70,14 +78,14 @@
 .todos__single {
   display: flex;
   border-radius: 5px;
-  padding: 15px;
+  padding: 10px;
   margin-top: 15px;
   background-image: linear-gradient(to right, #82aa24, #999b12);
   transition: 0.11s ease-in;
 }
 .todos__single:hover {
   box-shadow: 0 0 5px #333;
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 .todos__single--text {
   flex: 1;
@@ -106,12 +114,16 @@
 .todos__single .icon:hover {
   opacity: 0.7;
 }
-
-@media (max-width: 1200px) {
-  .todos__single { width: 40%; }
+.todos__single.drag {
+  box-shadow: 0 0 20px #222;
 }
 
+@media (max-width: 1100px) {
+  .todos { width: 45%; }
+}
 @media (max-width: 700px) {
-  .todos { width: 95%; }
-  .todos__single { width: 100%; }
+  .container .todos { width: 100%; margin-bottom: 10px; }
+  .container {
+    flex-direction: column;
+  }
 }
